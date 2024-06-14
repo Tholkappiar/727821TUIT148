@@ -1,6 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
 import { eCommerce } from "../util/Constants";
+import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 
 export default function Register() {
 	const [formData, setFormData] = useState({
@@ -10,6 +12,8 @@ export default function Register() {
 		ownerEmail: "",
 		accessCode: "",
 	});
+
+	const navigate = useNavigate();
 
 	const handleChange = (e) => {
 		setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -21,10 +25,11 @@ export default function Register() {
 			console.log(formData);
 			const response = await axios.post(eCommerce.registerUrl, formData);
 			console.log(response.data);
-			// Handle the response from the backend as needed
+			if (response.status == 201) {
+				navigate("/login");
+			}
 		} catch (error) {
 			console.error(error);
-			// Handle the error as needed
 		}
 	};
 
@@ -146,6 +151,11 @@ export default function Register() {
 							>
 								Register
 							</button>
+							<Link to="/login">
+								<p className="text-indigo-600 underline text-center m-4">
+									Login ?
+								</p>
+							</Link>
 						</div>
 					</form>
 				</div>

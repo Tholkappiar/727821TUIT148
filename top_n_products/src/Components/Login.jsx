@@ -1,8 +1,10 @@
 import { useState } from "react";
 import axios from "axios";
 import { eCommerce } from "../util/Constants";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Login() {
+	const navigate = useNavigate();
 	const [formData, setFormData] = useState({
 		companyName: "",
 		ownerName: "",
@@ -31,6 +33,10 @@ export default function Login() {
 			const response = await axios.post(eCommerce.LoginUrl, requestData);
 			console.log(response.data);
 			localStorage.setItem("jwt", response.data.access_token);
+			console.log(response.status);
+			if (response.status == 201) {
+				navigate("/");
+			}
 		} catch (error) {
 			console.error(error);
 		}
@@ -171,8 +177,13 @@ export default function Login() {
 								type="submit"
 								className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
 							>
-								Register
+								Login
 							</button>
+							<Link to="/register">
+								<p className="text-indigo-600 underline text-center m-4">
+									Not registered ?
+								</p>
+							</Link>
 						</div>
 					</form>
 				</div>

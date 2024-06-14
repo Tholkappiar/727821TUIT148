@@ -1,9 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { eCommerce } from "../util/Constants";
+import { useNavigate } from "react-router";
 
 function ProductList() {
 	const [products, setProducts] = useState([]);
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -17,6 +19,8 @@ function ProductList() {
 				});
 				setProducts(response.data);
 			} catch (error) {
+				// when no authenticated then move to the login page
+				navigate("/login");
 				console.error("Error fetching data:", error);
 			}
 		};
