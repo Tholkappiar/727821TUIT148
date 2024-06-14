@@ -43,8 +43,7 @@ function ProductList() {
 						>
 							<div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
 								<img
-									src={`https://picsum.photos/200/300
-                                    `}
+									src={`https://dummyimage.com/200x300/000/fff`}
 									alt={product.productName}
 									className="h-full w-full object-cover object-center lg:h-full lg:w-full"
 								/>
@@ -59,6 +58,12 @@ function ProductList() {
 									</h3>
 									<p className="mt-1 text-sm text-gray-500">
 										Rating: {product.rating}
+									</p>
+									<p className="mt-1 text-sm text-gray-500">
+										Discount: {product.discount} %
+									</p>
+									<p className="mt-1 text-sm text-gray-500">
+										Availability: {product.availability}
 									</p>
 								</div>
 								<p className="text-sm font-medium text-gray-900">
