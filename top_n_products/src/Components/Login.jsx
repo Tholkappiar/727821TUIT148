@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import { eCommerce } from "../util/Constants";
 
 export default function Login() {
 	const [formData, setFormData] = useState({
@@ -27,10 +28,7 @@ export default function Login() {
 				rollNo: formData.rollNo,
 			};
 			console.log(requestData);
-			const response = await axios.post(
-				"http://20.244.56.144/test/auth",
-				requestData
-			);
+			const response = await axios.post(eCommerce.LoginUrl, requestData);
 			console.log(response.data);
 			localStorage.setItem("jwt", response.data.access_token);
 		} catch (error) {

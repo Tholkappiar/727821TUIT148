@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import { eCommerce } from "../util/Constants";
 
 export default function Register() {
 	const [formData, setFormData] = useState({
@@ -18,10 +19,7 @@ export default function Register() {
 		e.preventDefault();
 		try {
 			console.log(formData);
-			const response = await axios.post(
-				"http://20.244.56.144/test/register",
-				formData
-			);
+			const response = await axios.post(eCommerce.registerUrl, formData);
 			console.log(response.data);
 			// Handle the response from the backend as needed
 		} catch (error) {
